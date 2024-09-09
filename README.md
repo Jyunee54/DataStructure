@@ -38,8 +38,10 @@ This program demonstrates basic array manipulation operations such as finding an
   3. Add a new element
   4. Delete an element by index
   5. Exit the program
+ 
 **Error Handling**
 - The program handles invalid input, including non-integer values and out-of-rangeindices, with error messages.
 - When modifying or deleting elements, the program checks whether the provided index is valid before proceeding.
+
 **Dependecies**
 - C++ Standard Library (iostream, fstream)
