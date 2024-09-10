@@ -11,17 +11,18 @@ using namespace std;
 void findElement(int array[], int size)
 {
 	int target;
+	string input;
+
 	try
 	{
 		cout << "Target Value: "; // Asking user for the value to search
-		cin >> target;
+		cin >> input;
 
-		// Handling input errors if the input is not a valid integer
-		if (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			throw invalid_argument("Index must be an integer."); // Throw an exception if input is invalid
+		size_t pos;
+		target = stoi(input, &pos);
+
+		if (pos < input.length()) {
+			throw invalid_argument("Input must be an integer.");
 		}
 
 		// Loop through the array to find the target value
@@ -59,18 +60,20 @@ void modifyElement(int array[], int size)
 {
 	int index;
 	int newValue;
+	string input;
+	string input2;
 
 	try
 	{
 		cout << "Index: "; // Ask user for the index to modify
-		cin >> index;
+		cin >> input;
 
 		// Handling input errors
-		if (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			throw invalid_argument("Index must be an integer."); // Throw exception for invalid input
+		size_t pos;
+		index = stoi(input, &pos);
+
+		if (pos < input.length()) {
+			throw invalid_argument("Input must be an integer.");
 		}
 
 		// Check if the index is within valid range
@@ -80,14 +83,14 @@ void modifyElement(int array[], int size)
 		}
 
 		cout << "New Value: "; // Ask for the new value to be inserted at the specified index
-		cin >> newValue;
+		cin >> input2;
 
 		// Handling input errors
-		if (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			throw invalid_argument("Index must be an integer.");
+		size_t pos2;
+		newValue = stoi(input2, &pos2);
+
+		if (pos < input.length()) {
+			throw invalid_argument("Input must be an integer.");
 		}
 
 		cout << "Old value: " << array[index] << endl; // Display the old value at the index
@@ -129,18 +132,19 @@ void modifyElement(int array[], int size)
 void addElement(int array[], int capacity, int &size)
 {
 	int newValue;
+	string input;
 
 	try
 	{
 		cout << "New Value: "; // Ask for the new value to add to the array
-		cin >> newValue;
+		cin >> input;
 
 		// Handling input errors
-		if (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			throw invalid_argument("Index must be an integer.");
+		size_t pos;
+		newValue = stoi(input, &pos);
+
+		if (pos < input.length()) {
+			throw invalid_argument("Input must be an integer.");
 		}
 
 		// Check if there's space left in the array
@@ -183,18 +187,19 @@ void addElement(int array[], int capacity, int &size)
 void deleteElement(int array[], int &size)
 {
 	int index;
+	string input;
 
 	try
 	{
 		cout << "Index: "; // Ask for the index to delete
-		cin >> index;
+		cin >> input;
 
 		// Handling input errors
-		if (cin.fail())
-		{
-			cin.clear();
-			cin.ignore(numeric_limits<streamsize>::max(), '\n');
-			throw invalid_argument("Index must be an integer.");
+		size_t pos;
+		index = stoi(input, &pos);
+
+		if (pos < input.length()) {
+			throw invalid_argument("Input must be an integer.");
 		}
 
 		// Check if index is within range
@@ -272,6 +277,7 @@ int main()
 		 << endl;
 
 	int num = 0;
+	string input;
 
 	// Menu to allow the user to choose different operations
 	while (num != 5)
@@ -286,14 +292,14 @@ int main()
 		try
 		{
 			// Read the user input
-			cin >> num;
+			cin >> input;
 
-			// Handle invalid input
-			if (cin.fail())
-			{
-				cin.clear();
-				cin.ignore(numeric_limits<streamsize>::max(), '\n');
-				throw invalid_argument("Index must be an integer");
+			// Handling input errors
+			size_t pos;
+			num = stoi(input, &pos);
+
+			if (pos < input.length()) {
+				throw invalid_argument("Input must be an integer.");
 			}
 
 			// Switch case to handle menu options
@@ -317,7 +323,8 @@ int main()
 				break;
 			case 5: // Option to exit the program
 				cout << endl;
-				cout << "Finish the program\n" << endl;
+				cout << "Finish the program\n"
+					 << endl;
 				break;
 			default: // Handle invalid menu options
 				cout << "Invalid number\n"
