@@ -56,8 +56,75 @@ And, it also contains the main function and user interaction code for the stack 
 
 It also includes a function get_valid_input() to ensure that the user inputs a valid integer and handles non-integer inputs by prompting the user again.
 
+### 3. Key Components
 
-### How to Run
+#### 3.1 Single Linked List Implementation
+
+This implementation uses a custom `Node` structure to represent the linked list. The list supports both front and back insertions as well as deletions. It also provides functionality to find specific elements and check if the list is empty.
+
+Example method:
+```c
+template <typename Item_Type>
+void Single_Linked_List<Item_Type>::push_front(const Item_Type &item)
+{
+    Node *new_node = new Node(item, head);
+    head = new_node;
+    if (!tail)
+    {
+        tail = head;
+    }
+    num_items++;
+}
+```
+This method inserts a new node at the front of the linked list.
+
+#### 3.2 Vector-based Stack Implementation
+
+The stack is implemented using the `vector<int>` container, leveraging its dynamic array capabilities. The stack provides essential operations like push, pop, and top retrieval, as well as a method to calculate the average of the stack elements.
+
+Example method:
+```c
+double Stack::average() const
+{
+    if (is_empty())
+    {
+        throw std::out_of_range("Stack is empty");
+    }
+    double sum = std::accumulate(stack.begin(), stack.end(), 0);
+    return sum / static_cast<double>(stack.size());
+}
+```
+This method calculates the average value of the elements in the stack. If the stack is empty, it throws an exception.
+
+### 4. Error Handling
+The program includes robust error handling to manage situations where the stack is empty or where user input is invalid.
+
+1. **Empty Stack Exception:** When trying to perform operations like `pop()` or `top(`) on an empty stack, the program throws an `out_of_range` exception, ensuring the user is informed of invalid actions.
+2. **Input Validation:** The `get_valid_input()` function ensures that only integers are accepted as input. If a non-integer value is entered, the program clears the error flags on the input stream, discards invalid input, and prompts the user for a valid integer.
+
+Example of input validation:
+```c
+int get_valid_input()
+{
+    int value;
+    while (true)
+    {
+        std::cin >> value;
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid input! Please enter an integer: ";
+        }
+        else
+        {
+            return value;
+        }
+    }
+}
+```
+
+### 5. How to Run
 1. Compile the program using a C++ compiler, for example:
    ```css
    g++ -o assignment2 main.cpp
@@ -66,3 +133,23 @@ It also includes a function get_valid_input() to ensure that the user inputs a v
    ```bash
    ./assignment2
    ```
+
+### 6. Execution Flow
+When the program is run, the user is presented with the following menu:
+```
+--- Stack Operations ---
+1. Push a value onto the stack
+2. Pop a value from the stack
+3. Check the top of the stack
+4. Check if stack is empty
+5. Get the average of stack elements
+6. Exit
+```
+
+- The user selects an operation by entering the corresponding number.
+- The program executes the selected operation and displays the result.
+- If the user enters an invalid choice, the program prompts them to try again.
+- This process continues until the user selects option 6, which exits the program.
+
+### 7. Conclusion
+This project demonstrates how to implement and manage custom data structures using C++. The **Single Linked List** and **Vector-based Stack** are both fundamental components of computer science, providing insight into dynamic memory management, container classes, and exception handling in C++. The project showcases the utility of `vector` in building a stack and highlights robust input validation and error handling techniques to ensure a smooth user experience.
