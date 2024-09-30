@@ -152,28 +152,35 @@ When the program is run, the user is presented with the following menu:
 - This process continues until the user selects option 6, which exits the program.
 
 1. Push 10, 20, 30 onto the stack
+   
    ![image](https://github.com/user-attachments/assets/b990b0e7-2ae1-456b-8d62-bfd1d52b95ca)
    ![image](https://github.com/user-attachments/assets/7f4cee18-d889-4fa9-a7bd-709758e8c1db)
    ![image](https://github.com/user-attachments/assets/6f623536-bcea-43bb-ae03-07770337dedd)
 
 2. Pop a value from the stack
+   
    ![image](https://github.com/user-attachments/assets/275f12cb-a0fb-4c86-beab-f4b086a9a461)
 
 3. Check the top of the stack
+   
    ![image](https://github.com/user-attachments/assets/23c0bb22-faaa-4380-bf9d-a9592321ccf5)
 
 4. Check if stack is empty
 
    - If stack is not empty
+     
      ![image](https://github.com/user-attachments/assets/53c38571-bac6-4752-856c-b669d868cf0a)
 
    - If stack is empty
+     
      ![image](https://github.com/user-attachments/assets/535753b4-37f4-4161-9f61-537fd8c29a00)
 
 5. Get the average of stack elements
+   
    ![image](https://github.com/user-attachments/assets/4b68ad83-7ea7-40bd-baf8-521fbfa88faf)
 
 6. Exit
+   
    ![image](https://github.com/user-attachments/assets/aeb60a50-2144-4c71-85be-a4fc40bf5b41)
 
 
