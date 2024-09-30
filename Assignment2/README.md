@@ -1,44 +1,63 @@
 # Datst Structre
 ## Assignment 2 Report
 
-### Overview
+### 1. Overview
 This project consists of two separate implementations in C++:
-1. **Single Linked List:** A custom implementation of a singly linked list supporting basic list operations such as insertion, deletion, and element lookup.
-2. **Vector-based Stack:** A stack of integers implemented using std::vector, supporting common stack operations like push, pop, and top, along with an additional feature to calculate the average of the stack elements.
+1. **Single Linked List:** A linked list that allows insertion and deletion from both the front and back.
+2. **Vector-based Stack:** A stack implementation using `vector` with basic stack operations such as `push`, `pop`, `top`, and `average`.
 
-### Features
-1. **Single Linked List** 
-- **push_front:** Insert an element at the front of the list.
-- **push_back:** Insert an element at the back of the list.
-- **pop_front:** Remove the element from the front of the list.
-- **pop_back:** Remove the element from the back of the list.
-- **front:** Access the element at the front of the list.
-- **back:** Access the element at the back of the list.
-- **empty:** Check if the list is empty.
-- **insert(index, item):** Insert an element at a specific index.
-- **remove(index):** Remove an element from a specific index.
-- **find(item):** Find the first occurrence of an item in the list.
-- **size:** Get the number of elements in the list.
+The program includes functionalities to:
+- Push and pop elements to/from the stack.
+- Check if the stack is empty.
+- View the top element in the stack.
+- Calculate the average of the stack elements.
+- Validate user inputs and handle exceptions for invalid input types.
 
-2. **Vector-based Stack**
-- **push:** Add an element to the top of the stack.
-- **pop:** Remove the element from the top of the stack.
-- **top:** Access the element at the top of the stack.
-- **is_empty:** Check if the stack is empty.
-- **average:** Calculate the average value of all elements in the stack.
-- **size** Get the number of elements in the stack.
+### 2. Structure
+#### 2.1 Header Files (`header.h`)
+This file defines two classes: `Single_Linked_List` and `Stack`.
+
+**Single_Linked_List Class:**
+- Node structure: Stores data and a pointer to the next node.
+- Core Methods:
+  - `push_front()`: Inserts an element at the front of the list.
+  - `push_back()`: Inserts an element at the back of the list.
+  - `pop_front()`: Removes an element from the front.
+  - `pop_back()`: Removes an element from the back.
+  - `insert()`: Inserts an element at a specific index.
+  - `remove()`: Removes an element at a specific index.
+  - `find()`: Finds the index of a specific element.
+  - `empty()`: Checks if the list is empty.
+  - `size()`: Returns the size of the list.
 
 
-### Files
-- `main.cpp`: 
-  - Contains the implementation of the Single Linked List methods.
-  - Contains the implementation of the Vector-based Stack methods.
-  - Contains the test code to demonstrate the functionality of both the Single Linked List and the Stack.
-- `header.h`:
-  - Contains the class declaration and function prototypes for the Single Linked List.
-  - Contains the class declaration and function prototypes for the Vector-based Stack.
+**Stack Class:**
+- Member Variables:
+  - `vector<int> stack`: Stores the stack elements.
+- Core Methods:
+  - `push()`: Pushes an integer value onto the stack.
+  - `pop()`: Removes the top element from the stack.
+  - `top()`: Returns the top element of the stack.
+  - `average()`: Computes the average of the stack elements.
+  - `is_empty()`: Checks if the stack is empty.
+  - `size()`: Returns the current size of the stack.
 
-## How to Run
+
+#### 2.2 Main File (`main.cpp`)
+This fle contains the implementation of the Single Linked List methods and Vector-based Stack methods.
+
+And, it also contains the main function and user interaction code for the stack operations. It presents a menu-driven system for users to perform the following tasks:
+
+- Push values onto the stack.
+- Pop values from the stack.
+- View the top element.
+- Check if the stack is empty.
+- Calculate and display the average value of the elements in the stack.
+
+It also includes a function get_valid_input() to ensure that the user inputs a valid integer and handles non-integer inputs by prompting the user again.
+
+
+### How to Run
 1. Compile the program using a C++ compiler, for example:
    ```css
    g++ -o assignment2 main.cpp
