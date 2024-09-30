@@ -1,6 +1,8 @@
 #include "header.h"
 #include <limits>
 
+using namespace std;
+
 template <typename Item_Type>
 Single_Linked_List<Item_Type>::Single_Linked_List() : head(nullptr), tail(nullptr), num_items(0) {}
 
@@ -92,7 +94,7 @@ const Item_Type &Single_Linked_List<Item_Type>::front() const
 {
     if (empty())
     {
-        throw std::out_of_range("List is empty");
+        throw out_of_range("List is empty");
     }
     return head->data;
 }
@@ -103,7 +105,7 @@ const Item_Type &Single_Linked_List<Item_Type>::back() const
 {
     if (empty())
     {
-        throw std::out_of_range("List is empty");
+        throw out_of_range("List is empty");
     }
     return tail->data;
 }
@@ -211,7 +213,7 @@ void Stack::pop()
 {
     if (is_empty())
     {
-        throw std::out_of_range("Stack is empty");
+        throw out_of_range("Stack is empty");
     }
     stack.pop_back();
 }
@@ -220,7 +222,7 @@ int Stack::top() const
 {
     if (is_empty())
     {
-        throw std::out_of_range("Stack is empty");
+        throw out_of_range("Stack is empty");
     }
     return stack.back();
 }
@@ -229,15 +231,32 @@ double Stack::average() const
 {
     if (is_empty())
     {
-        throw std::out_of_range("Stack is empty");
+        throw out_of_range("Stack is empty");
     }
-    double sum = std::accumulate(stack.begin(), stack.end(), 0);
+    double sum = accumulate(stack.begin(), stack.end(), 0);
     return sum / static_cast<double>(stack.size());
 }
 
 size_t Stack::size() const
 {
     return stack.size();
+}
+
+// Function to print the contents of the stack
+void Stack::print_stack() const
+{
+    if (is_empty())
+    {
+        cout << "The stack is empty.\n";
+        return;
+    }
+
+    cout << "Stack contents (from bottom to top): ";
+    for (const int &elem : stack)
+    {
+        cout << elem << " ";
+    }
+    cout << endl;
 }
 
 // This function ensures that the user enters a valid integer input.
@@ -247,107 +266,136 @@ int get_valid_input()
     int value;
     while (true)
     {
-        std::cin >> value;
+        cin >> value;
 
         // Check if the input failed (non-integer input).
-        if (std::cin.fail())
+        if (cin.fail())
         {
             // Clear the error flags on the input stream.
-            std::cin.clear();                                                   // 실패 상태 플래그를 초기화
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 잘못된 입력을 버림
-            std::cout << "Invalid input! Please enter an integer: ";
+            cin.clear();
+            // Ignore any invalid input in the buffer until the next newline.
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            // Prompt the user for a valid integer.
+            cout << "Invalid input! Please enter an integer: ";
         }
         else
         {
-            return value; // 올바른 정수 값이면 반환
+            // Return the valid integer input.
+            return value;
         }
     }
 }
 
 int main()
 {
-    // Create a stack object
+    // Create a stack object (based on the custom Stack class).
     Stack myStack;
 
-    int choice;
-    int value;
+    int choice; // To store the user's menu choice
+    int value;  // To store the integer value the user wants to push to the stack
 
     do
     {
-        // 메뉴 출력
-        std::cout << "\n--- Stack Operations ---\n";
-        std::cout << "1. Push a value onto the stack\n";
-        std::cout << "2. Pop a value from the stack\n";
-        std::cout << "3. Check the top of the stack\n";
-        std::cout << "4. Check if stack is empty\n";
-        std::cout << "5. Get the average of stack elements\n";
-        std::cout << "6. Exit\n";
-        std::cout << "Enter your choice: ";
+        // Display the menu options to the user.
+        cout << "\n--- Stack Operations ---\n";
+        cout << "1. Push a value onto the stack\n";
+        cout << "2. Pop a value from the stack\n";
+        cout << "3. Check the top of the stack\n";
+        cout << "4. Check if stack is empty\n";
+        cout << "5. Get the average of stack elements\n";
+        cout << "6. Exit\n";
+        cout << "Enter your choice: ";
 
-        choice = get_valid_input(); // 메뉴 선택 입력
+        // Get the user's choice using the input validation function.
+        choice = get_valid_input();
 
         switch (choice)
         {
+        // Case 1: Push a value onto the stack
         case 1:
-            std::cout << "Enter a value to push onto the stack: ";
-            value = get_valid_input(); // 스택에 넣을 값 입력
-            myStack.push(value);
-            std::cout << value << " pushed onto the stack.\n";
+            cout << "Enter a value to push onto the stack: ";
+            value = get_valid_input(); // Get the value to be pushed onto the stack
+            myStack.push(value);       // Push the value onto the stack
+            cout << value << " pushed onto the stack.\n";
+            myStack.print_stack();
             break;
 
+        // Case 2: Pop the top value from the stack
         case 2:
+            // Check if the stack is not empty
             if (!myStack.is_empty())
             {
+                // Pop the top element from the stack
                 myStack.pop();
-                std::cout << "Top element popped from the stack.\n";
+                cout << "Top element popped from the stack.\n";
+                myStack.print_stack();
             }
             else
             {
-                std::cout << "Stack is empty. Cannot pop.\n";
+                // If the stack is empty, show an error message
+                cout << "Stack is empty. Cannot pop.\n";
             }
             break;
 
+        // Case 3: Show the top value of the stack
         case 3:
+            // Check if the stack is not empty
             if (!myStack.is_empty())
             {
-                std::cout << "Top of the stack: " << myStack.top() << std::endl;
+                // Display the top element of the stack
+                cout << "Top of the stack: " << myStack.top() << endl;
+                myStack.print_stack();
             }
             else
             {
-                std::cout << "Stack is empty.\n";
+                // If the stack is empty, show an error message
+                cout << "Stack is empty.\n";
             }
             break;
 
+        // Case 4: Check if the stack is empty
         case 4:
+            // If the stack is empty, show an appropriate message
             if (myStack.is_empty())
             {
-                std::cout << "Stack is empty.\n";
+                cout << "Stack is empty.\n";
             }
             else
             {
-                std::cout << "Stack is not empty.\n";
+                // If the stack is not empty, show a different message
+                cout << "Stack is not empty.\n";
+                myStack.print_stack();
             }
             break;
 
+        // Case 5: Calculate and display the average of the stack elements
         case 5:
+            // Check if the stack is not empty
             if (!myStack.is_empty())
             {
-                std::cout << "Average of stack elements: " << myStack.average() << std::endl;
+                myStack.print_stack();
+                // Calculate and display the average of the elements in the stack
+                cout << "Average of stack elements: " << myStack.average() << endl;
             }
             else
             {
-                std::cout << "Stack is empty. No average to calculate.\n";
+                // If the stack is empty, show an error message
+                cout << "Stack is empty. No average to calculate.\n";
             }
             break;
 
+        // Case 6: Exit the program
         case 6:
-            std::cout << "Exiting program.\n";
+            // Inform the user that the program is exiting
+            cout << "Exiting program.\n";
             break;
 
+        // Default case: Invalid menu option
         default:
-            std::cout << "Invalid choice! Please try again.\n";
+            // Inform the user of an invalid choice
+            cout << "Invalid choice! Please try again.\n";
         }
-
+        // Keep repeating the menu until the user chooses to exit (choice 6).
     } while (choice != 6);
 
     return 0;
