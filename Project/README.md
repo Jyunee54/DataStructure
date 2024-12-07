@@ -10,26 +10,9 @@
 
 ## 2. UML Class Diagram
 
-+----------------------+  
-|      Elevator        |  
-+----------------------+  
-| - currentFloor: int  |  
-| - direction: string  |  
-| - upRequests: PQ<int>|  
-| - downRequests: PQ<int>|  
-+----------------------+  
-| + addRequest(pickup: int, dest: int) |  
-| + processRequests()                  |  
-+----------------------+  
+![Elevator](./images/elevator.png)
 
-
-+----------------------+  
-|       Request        |  
-+----------------------+  
-| - pickupFloor: int   |  
-| - destinationFloor: int|  
-| - time: int          |  
-+----------------------+  
+![Request](./images/request.png)
 
 
 **Explanation:**
