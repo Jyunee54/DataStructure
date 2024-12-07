@@ -10,25 +10,28 @@
 
 ## 2. UML Class Diagram
 
-+----------------------+
-|      Elevator        |
-+----------------------+
-| - currentFloor: int  |
-| - direction: string  |
-| - upRequests: PQ<int>|
-| - downRequests: PQ<int>|
-+----------------------+
-| + addRequest(pickup: int, dest: int) |
-| + processRequests()                  |
-+----------------------+
++----------------------+  
+|      Elevator        |  
++----------------------+  
+| - currentFloor: int  |  
+| - direction: string  |  
+| - upRequests: PQ<int>|  
+| - downRequests: PQ<int>|  
++----------------------+  
+| + addRequest(pickup: int, dest: int) |  
+| + processRequests()                  |  
++----------------------+  
 
-+----------------------+
-|       Request        |
-+----------------------+
-| - pickupFloor: int   |
-| - destinationFloor: int|
-| - time: int          |
-+----------------------+
+
++----------------------+  
+|       Request        |  
++----------------------+  
+| - pickupFloor: int   |  
+| - destinationFloor: int|  
+| - time: int          |  
++----------------------+  
+
+
 **Explanation:**
 
 - `Elevator` Class: Manages the elevator operations, current floor, and direction. Handles requests using priority queues.
